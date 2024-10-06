@@ -1,0 +1,24 @@
+.brand{
+    width: 177px;
+    max-height: 64px;
+}
+
+.nav-link{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.bi{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+}
+.bi-search{
+    background-image: url('@/assets/img/search.png');
+}
+.bi-cart{
+    background-image: url('@/assets/img/cart.png'); 
+}
