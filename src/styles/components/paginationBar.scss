@@ -1,0 +1,29 @@
+.pagination-bar{
+    display: flex;
+    align-items: center;
+    gap:15px;
+
+    .btn-right,.btn-left{
+        padding: 10px;
+        border-radius: 50%;
+        background-color: $active-category-color;
+    }
+
+    .page-numbers-container{
+        display: flex;
+        align-items: center;
+        gap:20px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        .page-number{
+            cursor: pointer;
+            width: 30px;
+            &:hover{
+                background-color: #ccc;
+                width: 30px;
+                border-radius: 50%;
+            }
+        }
+    }
+}
