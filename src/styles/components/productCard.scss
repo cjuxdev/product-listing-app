@@ -1,0 +1,36 @@
+.card{
+    width: 334px;
+    height: 528px;
+    border: 0px;
+    .product-image{
+        max-height: 90%;
+        overflow: hidden;
+        img{
+            max-width: 334px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+    }
+    .product-info{
+        padding: 10px;
+        box-shadow: 0px 1px 1px 1px #58585840;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        line-height: 30px   ;
+        .product-title{
+            font-weight: 500;
+            font-size: 22px;
+        }
+        .product-category{
+            font-weight: 400;
+            font-size: 20px;
+            color:$sub-text-color;
+        }
+        .product-price{
+            font-weight: 500;
+            font-size: 20px;
+            color:$sub-text-color;
+        }
+    }
+}
