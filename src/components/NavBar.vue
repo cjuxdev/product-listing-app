@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
       <div
         class="container-fluid d-flex justify-content-between align-items-center"
       >
@@ -20,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Men</a>
+              <a class="nav-link" aria-current="page" href="#">Men</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Women</a>
+              <a class="nav-link active" href="#">Women</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">New & Featured</a>
@@ -46,17 +46,23 @@
         </a>
 
         <!-- Right side: Search icon, Cart icon, Login button -->
-        <div class="d-flex align-items-center">
-          <a href="#" class="me-3">
+        <div class="d-flex align-items-center right-section">
+          <a href="#" class="">
             <i class="bi bi-search"></i>
           </a>
-          <a href="#" class="me-3">
+          <a href="#" class="">
             <i class="bi bi-cart"></i>
           </a>
-          <a href="#" class="btn"> Login </a>
+          <a href="#" class="login"> Login </a>
         </div>
       </div>
     </nav>
+  </div>
+  <div class="sub-title">
+    <p>
+      The Ultimate House of Luxury, defining style and creating desire, now and
+      forever
+    </p>
   </div>
 </template>
 
