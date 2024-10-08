@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "name": "Clara long sleeve shirt",
+      "price": 78.00,
+      "description": "A short description of Product 1.",
+      "image": "/mock-data/images/women-1.jpeg",
+      "category": "T-shirts",
+      "type" :"Women"
+    },
+    {
+      "id": 2,
+      "name": "Diana Blazer",
+      "price": 150.00,
+      "description": "A short description of Product 2.",
+      "image": "/mock-data/images/women-2.jpeg",
+      "category": "Blazers",
+      "type" :"Women"
+    },
+    {
+      "id": 3,
+      "name": "Royal Satin Skirt",
+      "price": 60.00,
+      "description": "A short description of Product 2.",
+      "image": "/mock-data/images/women-Skirts.jpeg",
+      "category": "Skirts",
+      "type" :"Women"
+    },
+    {
+      "id": 4,
+      "name": "Clara Black T-Shirt",
+      "price": 38.00,
+      "description": "A short description of Product 3.",
+      "image": "/mock-data/images/women-3.jpeg",
+      "category": "T-shirts",
+      "type" :"Women"
+    },
+    {
+      "id": 5,
+      "name": "Clara Maxi Dress",
+      "price": 88.00,
+      "description": "A short description of Product 3.",
+      "image": "/mock-data/images/women-4.jpeg",
+      "category": "Dresses",
+      "type" :"Women"
+    },
+    {
+      "id": 6,
+      "name": "Teal Green Slim Fit",
+      "price": 67.00,
+      "description": "Applicable on: Orders above Rs. 300 (only on first purchase)",
+      "image": "/mock-data/images/men-1.jpg",
+      "category": "T-shirts",
+      "type" :"Men"
+    },
+    {
+      "id": 7,
+      "name": "Chinos Low-Rise Cotton Trousers",
+      "price": 55.00,
+      "description": "100% Original Products.Pay on delivery might be available.Easy 10 days returns and exchanges",
+      "image": "/mock-data/images/men-2.jpg",
+      "category": "Trousers",
+      "type" :"Men"
+    }
+
+  ]
