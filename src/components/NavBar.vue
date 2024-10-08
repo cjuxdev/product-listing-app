@@ -20,19 +20,41 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Men</a>
+              <a
+                class="nav-link"
+                aria-current="page"
+                :class="{ active: selectedType === 'men' }"
+                @click="selectCategory('men')"
+                href="#"
+                >Men</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Women</a>
+              <a
+                class="nav-link"
+                :class="{ active: selectedType === 'women' }"
+                @click="selectCategory('women')"
+                href="#"
+                >Women</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">New & Featured</a>
+              <a
+                class="nav-link"
+                :class="{ active: selectedType === 'new-featured' }"
+                @click="selectCategory('new-featured')"
+                href="#"
+                >New & Featured</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Men</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gift</a>
+              <a
+                class="nav-link"
+                :class="{ active: selectedType === 'gift' }"
+                @click="selectCategory('gift')"
+                href="#"
+                >Gift</a
+              >
             </li>
           </ul>
         </div>
@@ -70,8 +92,15 @@
 export default {
   data() {
     return {
-      logoSrc: require("@/assets/img/TULOZ.png"), // Using `require()` to reference the image
+      logoSrc: require("@/assets/img/TULOZ.png"),
+      selectedType: "men",
     };
+  },
+  methods: {
+    selectCategory(type) {
+      this.selectedType = type;
+      this.$emit("category-selected", type); // Emit the selected category to parent
+    },
   },
 };
 </script>
