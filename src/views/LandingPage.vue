@@ -18,7 +18,9 @@
           :product="product"
         />
       </div>
+      <!-- Only show Pagination if there are enough products -->
       <PaginationBar
+        v-if="filteredProducts.length > itemsPerPage && totalPages > 1"
         :totalPages="totalPages"
         :currentPage="currentPage"
         @page-changed="changePage"
@@ -48,14 +50,14 @@ export default {
   },
   data() {
     return {
-      allProducts: [],
-      filteredProducts: [],
-      visibleFilteredProducts: [],
+      allProducts: [], // All products
+      filteredProducts: [], // Filtered products for all pages
+      visibleFilteredProducts: [], // Products visible on the current page
       selectedType: "men",
       categories: ["All"],
       selectedCategory: "All",
-      currentPage: 1,
-      itemsPerPage: 5,
+      currentPage: 1, // Current page number
+      itemsPerPage: 5, // Number of items per page
     };
   },
   computed: {
@@ -63,7 +65,7 @@ export default {
       return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
     },
     paginatedItems() {
-      // Renamed to 'paginatedItems' to avoid duplication with data property
+      // Get the items for the current page
       const start = (this.currentPage - 1) * this.itemsPerPage;
       const end = start + this.itemsPerPage;
       return this.filteredProducts.slice(start, end);
@@ -84,6 +86,7 @@ export default {
     async filterProducts(type) {
       this.selectedType = type;
       this.selectedCategory = "All";
+      this.currentPage = 1; // Reset to page 1 when type changes
       this.filteredProducts = productService.filterProductsByType(
         this.allProducts,
         type
@@ -95,13 +98,14 @@ export default {
       } catch (error) {
         console.error("Error loading categories:", error);
       }
-      this.applyFilters();
+      this.applyFilters(); // Apply filters to current page products
     },
 
     // Filter products by category
     filterByCategory(category) {
       this.selectedCategory = category;
-      this.applyFilters();
+      this.currentPage = 1; // Reset to the first page when the category changes
+      this.applyFilters(); // Apply filters to paginated data
     },
 
     // Sort products alphabetically within the current page
@@ -111,7 +115,7 @@ export default {
           (a, b) => a.name.localeCompare(b.name)
         );
       } else {
-        this.applyFilters();
+        this.applyFilters(); // Reset to original order
       }
     },
 
@@ -131,14 +135,20 @@ export default {
     // Update the current page and apply filters to the new page's data
     changePage(page) {
       this.currentPage = page;
-      this.applyFilters();
+      this.applyFilters(); // Reapply filters for the new page
     },
 
     // Apply filters on paginated data
     applyFilters() {
-      let filtered = [...this.paginatedItems];
+      let filtered = [...this.allProducts]; // Start with all products
 
-      // Filter by category if needed
+      // Filter by selected type
+      filtered = productService.filterProductsByType(
+        filtered,
+        this.selectedType
+      );
+
+      // Filter by category
       if (this.selectedCategory !== "All") {
         filtered = productService.filterProductsByCategory(
           filtered,
@@ -147,7 +157,10 @@ export default {
         );
       }
 
-      this.visibleFilteredProducts = filtered;
+      this.filteredProducts = filtered; // Update filtered products
+
+      // Update visible products based on current page
+      this.visibleFilteredProducts = this.paginatedItems;
     },
   },
   mounted() {
