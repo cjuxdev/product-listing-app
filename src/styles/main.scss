@@ -3,8 +3,12 @@ body {
     font-family: 'Poppins', sans-serif;
    }
 @import 'variables';
+@import 'common';
 @import './components/saleBar';
 @import './components/navBar';
+@import './components/productCard';
+@import './components/categoryBar';
+@import './components/paginationBar';
 @import './responsive';
 
 
