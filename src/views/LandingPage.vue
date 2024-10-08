@@ -10,10 +10,10 @@
         @sort-alphabetically="sortProductsAlphabetically"
         @sort-by-price="sortProductsByPrice"
       />
-      <!-- <ProductCard /> -->
+      <!-- Product List -->
       <div class="product-list">
         <ProductCard
-          v-for="(product, index) in paginatedProducts"
+          v-for="(product, index) in visibleFilteredProducts"
           :key="index"
           :product="product"
         />
@@ -50,19 +50,20 @@ export default {
     return {
       allProducts: [],
       filteredProducts: [],
+      visibleFilteredProducts: [],
       selectedType: "men",
       categories: ["All"],
       selectedCategory: "All",
-      originalOrder: [],
       currentPage: 1,
-      itemsPerPage: 4,
+      itemsPerPage: 5,
     };
   },
   computed: {
     totalPages() {
       return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
     },
-    paginatedProducts() {
+    paginatedItems() {
+      // Renamed to 'paginatedItems' to avoid duplication with data property
       const start = (this.currentPage - 1) * this.itemsPerPage;
       const end = start + this.itemsPerPage;
       return this.filteredProducts.slice(start, end);
@@ -73,8 +74,7 @@ export default {
       try {
         const products = await productService.fetchProducts();
         this.allProducts = products;
-        this.originalOrder = [...products];
-        this.filterProducts(this.selectedType);
+        this.filterProducts(this.selectedType); // Load products of the selected type
       } catch (error) {
         console.error("Error loading products:", error);
       }
@@ -87,7 +87,7 @@ export default {
       this.filteredProducts = productService.filterProductsByType(
         this.allProducts,
         type
-      ); // Filter products
+      ); // Filter products by type
 
       try {
         const categories = await fetchCategoriesByType(type);
@@ -95,47 +95,63 @@ export default {
       } catch (error) {
         console.error("Error loading categories:", error);
       }
-      console.log("categories =", this.categories);
-      console.log("Selected type:", type);
-      console.log("Filtered products:", this.filteredProducts);
+      this.applyFilters();
     },
+
     // Filter products by category
     filterByCategory(category) {
       this.selectedCategory = category;
-      this.filteredProducts = productService.filterProductsByCategory(
-        this.allProducts,
-        this.selectedType,
-        category
-      );
-      console.log("Filtered products by category:", this.filteredProducts);
+      this.applyFilters();
     },
-    // Sort products alphabetically
+
+    // Sort products alphabetically within the current page
     sortProductsAlphabetically(isSortActive) {
-      this.isAlphabeticalSort = isSortActive;
-      if (this.isAlphabeticalSort) {
-        this.filteredProducts = [...this.filteredProducts].sort((a, b) =>
-          a.name.localeCompare(b.name)
+      if (isSortActive) {
+        this.visibleFilteredProducts = [...this.visibleFilteredProducts].sort(
+          (a, b) => a.name.localeCompare(b.name)
         );
       } else {
-        this.filterProducts(this.selectedType);
+        this.applyFilters();
       }
-
-      console.log("Sorted products alphabetically:", this.filteredProducts);
     },
+
+    // Sort products by price within the current page
     sortProductsByPrice(order) {
       if (order === "lowToHigh") {
-        this.filteredProducts.sort((a, b) => a.price - b.price);
+        this.visibleFilteredProducts = [...this.visibleFilteredProducts].sort(
+          (a, b) => a.price - b.price
+        );
       } else if (order === "highToLow") {
-        this.filteredProducts.sort((a, b) => b.price - a.price);
+        this.visibleFilteredProducts = [...this.visibleFilteredProducts].sort(
+          (a, b) => b.price - a.price
+        );
       }
-      console.log("Filtered products sorted by price:", this.filteredProducts);
     },
+
+    // Update the current page and apply filters to the new page's data
     changePage(page) {
       this.currentPage = page;
+      this.applyFilters();
+    },
+
+    // Apply filters on paginated data
+    applyFilters() {
+      let filtered = [...this.paginatedItems];
+
+      // Filter by category if needed
+      if (this.selectedCategory !== "All") {
+        filtered = productService.filterProductsByCategory(
+          filtered,
+          this.selectedType,
+          this.selectedCategory
+        );
+      }
+
+      this.visibleFilteredProducts = filtered;
     },
   },
   mounted() {
-    this.loadProducts();
+    this.loadProducts(); // Load products on mount
   },
 };
 </script>
