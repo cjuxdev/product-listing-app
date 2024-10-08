@@ -1,7 +1,10 @@
 .pagination-bar{
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 60px;
     gap:15px;
+    margin-bottom: 60px;
 
     .btn-right,.btn-left{
         padding: 10px;

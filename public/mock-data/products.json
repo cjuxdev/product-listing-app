@@ -61,6 +61,16 @@
       "image": "/mock-data/images/men-2.jpg",
       "category": "Trousers",
       "type" :"Men"
+    },
+    {
+      "id": 8,
+      "name": "Chinos Low-Rise Cotton Trousers",
+      "price": 55.00,
+      "description": "100% Original Products.Pay on delivery might be available.Easy 10 days returns and exchanges",
+      "image": "/mock-data/images/men-2.jpg",
+      "category": "Dresses",
+      "type" :"Women"
     }
+
 
   ]

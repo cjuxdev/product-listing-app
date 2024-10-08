@@ -1,9 +1,7 @@
 
 
 .navbar{
-    margin-top: 60px;
-    padding-left:50px;
-    padding-right: 50px;
+    margin-top: 125px;
     background-color: #fff;
     .navbar-nav{
         gap: 20px;
@@ -18,6 +16,9 @@
             }
         }
     }
+    .navbar-container{
+        padding-left: unset;
+     }
 
     .brand{
         width: 177px;

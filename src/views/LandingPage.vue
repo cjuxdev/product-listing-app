@@ -1,21 +1,25 @@
 <template>
   <div class="landingPage">
     <SaleBar />
-    <NavBar @category-selected="filterProducts" />
-    <CategoryBar
-      :categories="categories"
-      :selectedCategory="selectedCategory"
-      @category-selected="filterByCategory"
-    />
-    <!-- <ProductCard /> -->
-    <div class="product-list">
-      <ProductCard
-        v-for="(product, index) in filteredProducts"
-        :key="index"
-        :product="product"
+    <div class="content-wrapper">
+      <NavBar @category-selected="filterProducts" />
+      <CategoryBar
+        :categories="categories"
+        :selectedCategory="selectedCategory"
+        @category-selected="filterByCategory"
+        @sort-alphabetically="sortProductsAlphabetically"
+        @sort-by-price="sortProductsByPrice"
       />
+      <!-- <ProductCard /> -->
+      <div class="product-list">
+        <ProductCard
+          v-for="(product, index) in filteredProducts"
+          :key="index"
+          :product="product"
+        />
+      </div>
+      <PaginationBar />
     </div>
-    <PaginationBar />
   </div>
 </template>
 
@@ -45,6 +49,7 @@ export default {
       selectedType: "men",
       categories: ["All"],
       selectedCategory: "All",
+      originalOrder: [],
     };
   },
   methods: {
@@ -52,6 +57,7 @@ export default {
       try {
         const products = await productService.fetchProducts();
         this.allProducts = products;
+        this.originalOrder = [...products];
         this.filterProducts(this.selectedType);
       } catch (error) {
         console.error("Error loading products:", error);
@@ -69,7 +75,7 @@ export default {
 
       try {
         const categories = await fetchCategoriesByType(type);
-        this.categories = ["All", ...categories]; // Include 'All' option
+        this.categories = ["All", ...categories];
       } catch (error) {
         console.error("Error loading categories:", error);
       }
@@ -79,7 +85,7 @@ export default {
     },
     // Filter products by category
     filterByCategory(category) {
-      this.selectedCategory = category; // Update the selected category
+      this.selectedCategory = category;
       this.filteredProducts = productService.filterProductsByCategory(
         this.allProducts,
         this.selectedType,
@@ -87,9 +93,30 @@ export default {
       );
       console.log("Filtered products by category:", this.filteredProducts);
     },
+    // Sort products alphabetically
+    sortProductsAlphabetically(isSortActive) {
+      this.isAlphabeticalSort = isSortActive;
+      if (this.isAlphabeticalSort) {
+        this.filteredProducts = [...this.filteredProducts].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else {
+        this.filterProducts(this.selectedType);
+      }
+
+      console.log("Sorted products alphabetically:", this.filteredProducts);
+    },
+    sortProductsByPrice(order) {
+      if (order === "lowToHigh") {
+        this.filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (order === "highToLow") {
+        this.filteredProducts.sort((a, b) => b.price - a.price);
+      }
+      console.log("Filtered products sorted by price:", this.filteredProducts);
+    },
   },
   mounted() {
-    this.loadProducts(); // Load products when component is mounted
+    this.loadProducts();
   },
 };
 </script>

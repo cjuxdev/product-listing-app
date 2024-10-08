@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div
-        class="container-fluid d-flex justify-content-between align-items-center"
+        class="container-fluid d-flex justify-content-between align-items-center navbar-container"
       >
         <!-- Left side: Menu items -->
         <button
