@@ -13,12 +13,16 @@
       <!-- <ProductCard /> -->
       <div class="product-list">
         <ProductCard
-          v-for="(product, index) in filteredProducts"
+          v-for="(product, index) in paginatedProducts"
           :key="index"
           :product="product"
         />
       </div>
-      <PaginationBar />
+      <PaginationBar
+        :totalPages="totalPages"
+        :currentPage="currentPage"
+        @page-changed="changePage"
+      />
     </div>
   </div>
 </template>
@@ -50,7 +54,19 @@ export default {
       categories: ["All"],
       selectedCategory: "All",
       originalOrder: [],
+      currentPage: 1,
+      itemsPerPage: 4,
     };
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
+    },
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredProducts.slice(start, end);
+    },
   },
   methods: {
     async loadProducts() {
@@ -113,6 +129,9 @@ export default {
         this.filteredProducts.sort((a, b) => b.price - a.price);
       }
       console.log("Filtered products sorted by price:", this.filteredProducts);
+    },
+    changePage(page) {
+      this.currentPage = page;
     },
   },
   mounted() {
