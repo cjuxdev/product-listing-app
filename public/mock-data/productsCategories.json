@@ -1,0 +1,6 @@
+{
+    "men": ["T-shirts", "Trousers"],
+    "women": ["Blazers", "Skirts","Dresses","T-shirts"],
+    "new-featured": ["Accessories", "Shoes"],
+    "gift": ["Gift Cards", "Gift Sets"]
+  }

@@ -1,9 +1,33 @@
 
 /* For Mobile View */
 @media screen and (max-device-width: $breakpoint-sm){
-    .navbar-brand {
-               top:4px;
-            }
+
+    .saleBar{
+        font-size: 19px;
+        .container{
+            padding: 6px;
+            line-height: 22px;
+        }
+    }
+
+    .navbar{
+        padding-left:5px;
+        padding-right: 5px;
+        margin-top: 20px;
+        .navbar-brand {
+            top:4px;
+         }
+    }
+    .sub-title{
+        p{
+            font-size: 15px;
+        }
+    }
+
+    .login{
+        display: none;
+    }
+
   }
 
 @media screen and (max-device-width: $breakpoint-md) {
