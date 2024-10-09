@@ -10,7 +10,7 @@
       <div class="product-price">$ 78 . 00</div> -->
       <div class="product-title">{{ product.name }}</div>
       <div class="product-category">{{ product.category }}</div>
-      <div class="product-price">$ {{ product.price }}</div>
+      <div class="product-price">$ {{ formattedPrice }}</div>
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
     product: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    formattedPrice() {
+      return this.product.price ? this.product.price.toFixed(2) : "0.00";
     },
   },
   methods: {
