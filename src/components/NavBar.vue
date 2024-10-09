@@ -89,16 +89,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
       logoSrc: require("@/assets/img/TULOZ.png"),
-      selectedType: "men",
     };
   },
+  computed: {
+    ...mapState({
+      selectedType: (state) => state.selectedType,
+    }),
+  },
   methods: {
+    ...mapActions(["updateSelectedType"]),
     selectCategory(type) {
-      this.selectedType = type;
+      //this.selectedType = type;
+      this.updateSelectedType(type);
       this.$emit("category-selected", type); // Emit the selected category to parent
     },
   },

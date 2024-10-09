@@ -19,7 +19,7 @@
       <li class="filter-2">
         <span @click="togglePopover" class="filter-2-icon"></span>
         <div v-if="popoverVisible" class="popover" style="z-index: 1000">
-          <div class="form-check">
+          <div class="form-check" @click="sortByPrice('lowToHigh')">
             <input
               class="form-check-input"
               type="radio"
@@ -33,7 +33,7 @@
               Sort by: Price (Low to High)
             </label>
           </div>
-          <div class="form-check">
+          <div class="form-check" @click="sortByPrice('highToLow')">
             <input
               class="form-check-input"
               type="radio"

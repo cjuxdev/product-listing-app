@@ -14,7 +14,7 @@ const productService = {
   // Filter products by type (e.g., men, women)
   filterProductsByType(products, type) {
     if (type === "all") {
-      return products; // If "all", return the full list
+      return products;
     }
     return products.filter(
       (product) => product.type.toLowerCase() === type.toLowerCase()
@@ -32,6 +32,16 @@ const productService = {
     }
 
     return filteredProducts;
+  },
+  async getProductById(id) {
+    try {
+      const response = await axios.get("/mock-data/products.json");
+      const products = response.data;
+      return products.find((product) => product.id === parseInt(id));
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
   },
 };
 

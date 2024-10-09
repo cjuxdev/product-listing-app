@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import productService from "@/services/productService.js";
 import { fetchCategoriesByType } from "@/services/productCategoryService.js";
 
@@ -53,7 +54,7 @@ export default {
       allProducts: [], // All products
       filteredProducts: [], // Filtered products for all pages
       visibleFilteredProducts: [], // Products visible on the current page
-      selectedType: "men",
+      // selectedType: "men",
       categories: ["All"],
       selectedCategory: "All",
       currentPage: 1, // Current page number
@@ -61,6 +62,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      selectedType: (state) => state.selectedType, // Get selectedType from Vuex
+    }),
     totalPages() {
       return Math.ceil(this.filteredProducts.length / this.itemsPerPage);
     },
@@ -72,6 +76,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["updateSelectedType"]),
     async loadProducts() {
       try {
         const products = await productService.fetchProducts();
@@ -84,7 +89,8 @@ export default {
 
     // Filter products by type
     async filterProducts(type) {
-      this.selectedType = type;
+      //this.selectedType = type;
+      this.updateSelectedType(type);
       this.selectedCategory = "All";
       this.currentPage = 1; // Reset to page 1 when type changes
       this.filteredProducts = productService.filterProductsByType(

@@ -1,9 +1,21 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
+  state: {
+    selectedType: "men",
+  },
+  getters: {
+    selectedType: (state) => state.selectedType,
+  },
+  mutations: {
+    setSelectedType(state, type) {
+      state.selectedType = type;
+    },
+  },
+  actions: {
+    updateSelectedType({ commit }, type) {
+      commit("setSelectedType", type);
+    },
+  },
   modules: {},
 });
