@@ -28,10 +28,19 @@
         display: none;
     }
 
+    .product-list{
+        flex-direction: column;
+    }
+    .content-wrapper{
+        margin-top: 80px;
+    }
+
   }
 
 @media screen and (max-device-width: $breakpoint-md) {
-    
+    .product-list{
+        flex-direction: unset;
+    }
 }  
 
 @media screen and (max-device-width: $breakpoint-lg) {

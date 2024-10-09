@@ -72,8 +72,48 @@
           <a href="#" class="">
             <i class="bi bi-search"></i>
           </a>
-          <a href="#" class="">
+          <a class="cart-con" @click.stop="toggleCartDropdown">
             <i class="bi bi-cart"></i>
+            <span v-if="cartItemCount > 0" class="cart-count">{{
+              cartItemCount
+            }}</span>
+            <!-- Cart dropdown -->
+            <div
+              v-if="isCartDropdownVisible"
+              class="cart-dropdown"
+              ref="cartDropDown"
+            >
+              <ul class="cart-items-list">
+                <li
+                  v-for="item in cartItems"
+                  :key="item.id"
+                  class="cart-item text-start"
+                >
+                  <p>{{ item.name }}</p>
+                  <div class="d-flex gap-2">
+                    <span>
+                      <label class="cart-lable">Size:</label>
+                      {{ item.size }}</span
+                    >
+                    <span class="color-con">
+                      <label class="cart-lable">Color:</label>
+                      <div
+                        class="color-box"
+                        :style="{ backgroundColor: item.color }"
+                      ></div>
+                    </span>
+                  </div>
+                  <p>Price: ${{ item.price.toFixed(2) }}</p>
+                </li>
+              </ul>
+              <div class="cart-total">
+                <p>Total: ${{ cartTotal.toFixed(2) }}</p>
+                <button v-if="cartTotal.toFixed(2) > 0" class="Pay-btn">
+                  Checkout
+                </button>
+              </div>
+            </div>
+            <!-- Cart dropdown -->
           </a>
           <a href="#" class="login"> Login </a>
         </div>
@@ -89,15 +129,23 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       logoSrc: require("@/assets/img/TULOZ.png"),
+      isCartDropdownVisible: false,
     };
   },
+  mounted() {
+    document.addEventListener("click", this.handleClickOutsideB);
+  },
+  beforeUnmount() {
+    document.removeEventListener("click", this.handleClickOutsideB);
+  },
   computed: {
+    ...mapGetters(["cartItemCount", "cartItems", "cartTotal"]),
     ...mapState({
       selectedType: (state) => state.selectedType,
     }),
@@ -107,7 +155,16 @@ export default {
     selectCategory(type) {
       //this.selectedType = type;
       this.updateSelectedType(type);
-      this.$emit("category-selected", type); // Emit the selected category to parent
+      this.$emit("category-selected", type);
+    },
+    toggleCartDropdown() {
+      this.isCartDropdownVisible = !this.isCartDropdownVisible;
+    },
+    handleClickOutsideB(event) {
+      const cartDropDown = this.$refs.cartDropDown;
+      if (cartDropDown && !cartDropDown.contains(event.target)) {
+        this.isCartDropdownVisible = false;
+      }
     },
   },
 };

@@ -1,0 +1,69 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-contenter {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    .title{
+        h3{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 25px;
+            color: #3DD29D;
+            margin-top: 20px;
+        }
+    }
+    .info{
+        font-family: 'Poppins', sans-serif; 
+        line-height: 30px;
+        font-weight: 400;
+        font-size: 20px;
+        color: #252525;
+    }
+    .close{
+        display: flex;
+        justify-content: end;
+        padding-bottom: 1.5rem;
+    }
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif; 
+    gap: 20px;
+    margin-top: 1rem;
+    .continue{
+        border-radius: 5px; 
+        font-size: 16px;
+        font-weight: 600;
+        background-color: #fff;
+        border: 1px solid #3DD29D; 
+        color: #3DD29D;
+    }
+    .proceed{
+      background-color: #3DD29D;
+      border-radius: 5px; 
+      font-size: 16px; 
+      font-weight: 600;
+      color: #fff;  
+    }
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
