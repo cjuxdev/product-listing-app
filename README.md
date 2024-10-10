@@ -35,6 +35,9 @@ npm run lint
 ```bash
 product-listing-app/
 ├── public/
+│   ├── mock-data/
+│   │   ├── products.json
+│   │   └── categories.json
 │   ├── index.html
 │   └── favicon.ico
 ├── src/
@@ -56,30 +59,29 @@ product-listing-app/
 │   └── main.js
 ├── package.json
 └── README.md
+```
 
 
-## Dummy Data Store
+## Product Data
+This file contains all the product details, such as name, price, category, etc.
 
-The application uses two JSON files to mock product data and categories. These files are stored in the `src/assets/data/` directory.
+**Location:** `public/mock-data/products.json`
 
-Here are the paths to the dummy data files:
+## Categories Data
+This file contains the categories and subcategories for filtering the products.
 
-1. **Product Data**: `src/assets/data/products.json`  
-   This file contains all the product details, such as name, price, category, etc.
-
-2. **Categories Data**: `src/assets/data/productCategories.json`  
-   This file contains the categories and subcategories for filtering the products.
-
+**Location:** `public/mock-data/productCategories.json`
 
 ## Additional Resources
-- [Vue.js Documentation](https://vuejs.org/guide/introduction.html)
-- [Vuex Documentation](https://vuex.vuejs.org/)
-- [SCSS Documentation](https://sass-lang.com/documentation)
 
-### Customize configuration
+* [Vue.js Documentation](https://vuejs.org/guide/introduction.html)
+* [Vuex Documentation](https://vuex.vuejs.org/)
+* [SCSS Documentation](https://sass-lang.com/documentation)
+
+### Customize Configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Developed By
 
-## Developed By
-
-**[Chathura Jayaranga](https://github.com/chathuraj)** 
+[Chathura Jayaranga](https://github.com/chathuraj)
