@@ -1,7 +1,10 @@
 
-/* For Mobile View */
-@media screen and (max-device-width: $breakpoint-sm){
 
+
+
+
+/* For Mobile View */
+@media screen and (max-width: $breakpoint-sm) {
     .saleBar{
         font-size: 19px;
         .container{
@@ -17,6 +20,17 @@
         .navbar-brand {
             top:4px;
          }
+         .right-section{
+            position: absolute;
+            right: 5px;
+            top: 13px;
+            gap:18px;
+            .cart-count{
+                position: absolute !important;
+                top: -20px !important;
+                right: -11px !important;
+            }
+         }
     }
     .sub-title{
         p{
@@ -28,16 +42,156 @@
         display: none;
     }
 
-  }
+    .product-list{
+        flex-direction: column;
+        align-items: center;
+        .card{
+            max-width: 334px;
+        }
+    }
+    .content-wrapper{
+        margin-top: 80px;
+    }
+   
+    .category-list{
+        flex-direction: column-reverse;
+        overflow: hidden;
+        ul:first-child{
+            overflow-y: auto;
+        }
+        ul li{
+            padding:5px 10px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        .popoverActive{
+            margin-bottom: 85px;
+            .popover{
+                position:relative; 
+                width: 100vw;
+                margin-top: 5px;
+                right: 46px;
+                top: 4px;
+            }
+        }
+    }
 
-@media screen and (max-device-width: $breakpoint-md) {
-    
-}  
 
-@media screen and (max-device-width: $breakpoint-lg) {
+    //----detail page 
+    .detail-area{
+        .d-flex-sm{
+            display: flex;
+            gap:10px;
+            .side-img-2{
+                margin-top: unset;
+            } 
+        }
+        .side-img-3{
+            margin-top: 10px;
+        }
+        .size-picker{
+            margin-bottom: 60px;
+        }
+        .favorite{
+            padding: unset;
+            .icon-hart{
+                background-position: center;
+            }
+        }
+        
+    }
+
+    .modal-contenter{
+        margin: 18px;
+    }
 
 }
   
-@media screen and (max-device-width: $breakpoint-xl) {
-   
+
+/* For Tablet View */
+@media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    .product-list{
+        flex-direction: unset;
+        justify-content: center;
+        flex-wrap: wrap;
+        .card{
+            max-width: 334px;
+            min-width: 334px;
+        }
+    }
+    //----detail page 
+    .size-picker{
+        margin-bottom: 60px;
+    }
 }
+ 
+
+@media screen and (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    .product-list{
+        flex-wrap: wrap;
+        justify-content: center;
+        .card{
+            min-width: 334px;
+        }
+    }
+
+    .size-picker{
+        margin-bottom: 60px;
+    }
+
+}
+  
+@media screen and (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
+    .product-list{
+        .card{
+            min-width: 334px;
+        } 
+    }
+
+    .size-picker{
+        margin-bottom: 60px;
+    }
+}
+
+
+//menu speacil ipad pro menu issue fixed
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+    .navbar-brand {
+        &.start-50 {
+            left: 63% !important;
+        }
+    }
+    .size-picker{
+        margin-bottom: 60px;
+    }
+    .detail-area{
+        flex-direction: column;
+        .col-lg-6{
+            width: 100%;
+        }
+    }
+
+  }
+
+  //menu speacil ipad Air detail image issue fixed
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) 
+  and (orientation: portrait){
+      .d-flex-sm{
+        display: flex;
+        gap:10px;
+        justify-content: space-between;
+        .side-img-2{
+            margin-top: unset;
+        }
+      } 
+      .side-img-3{
+        margin-top: 10px;
+      } 
+  }

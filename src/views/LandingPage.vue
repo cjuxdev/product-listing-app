@@ -12,6 +12,12 @@
       />
       <!-- Product List -->
       <div class="product-list">
+        <div
+          v-if="visibleFilteredProducts.length === 0"
+          class="no-products-message"
+        >
+          <p>Currently unavailable. It will be available soon...</p>
+        </div>
         <ProductCard
           v-for="(product, index) in visibleFilteredProducts"
           :key="index"
@@ -51,14 +57,13 @@ export default {
   },
   data() {
     return {
-      allProducts: [], // All products
-      filteredProducts: [], // Filtered products for all pages
-      visibleFilteredProducts: [], // Products visible on the current page
-      // selectedType: "men",
+      allProducts: [],
+      filteredProducts: [],
+      visibleFilteredProducts: [],
       categories: ["All"],
       selectedCategory: "All",
-      currentPage: 1, // Current page number
-      itemsPerPage: 5, // Number of items per page
+      currentPage: 1,
+      itemsPerPage: 5,
     };
   },
   computed: {
@@ -96,8 +101,7 @@ export default {
       this.filteredProducts = productService.filterProductsByType(
         this.allProducts,
         type
-      ); // Filter products by type
-
+      );
       try {
         const categories = await fetchCategoriesByType(type);
         this.categories = ["All", ...categories];

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="goToProductDetail">
+  <div class="card col-lg-2 col-sm-12 col-md-4" @click="goToProductDetail">
     <div class="product-image">
       <!-- <img src="/mock-data/images/women-1.jpeg" /> -->
       <img :src="product.image" alt="Product Image" />
