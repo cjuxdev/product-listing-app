@@ -32,7 +32,30 @@ npm run lint
 
 ## Project Structure
 
-product-listing-app/ ├── public/ │ ├── index.html │ └── favicon.ico ├── src/ │ ├── assets/ │ │ └── img/ │ ├── components/ │ │ ├── CategoryBar.vue │ │ ├── NavBar.vue │ │ ├── ProductCard.vue │ │ └── PaginationBar.vue │ ├── services/ │ │ ├── productService.js │ │ └── productCategoryService.js │ ├── store/ │ │ └── index.js │ ├── views/ │ │ └── LandingPage.vue │ ├── App.vue │ └── main.js ├── package.json └── README.md
+```bash
+product-listing-app/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   │   └── img/
+│   ├── components/
+│   │   ├── CategoryBar.vue
+│   │   ├── NavBar.vue
+│   │   ├── ProductCard.vue
+│   │   └── PaginationBar.vue
+│   ├── services/
+│   │   ├── productService.js
+│   │   └── productCategoryService.js
+│   ├── store/
+│   │   └── index.js
+│   ├── views/
+│   │   └── LandingPage.vue
+│   ├── App.vue
+│   └── main.js
+├── package.json
+└── README.md
 
 
 ## Dummy Data Store
