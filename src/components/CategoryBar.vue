@@ -10,7 +10,11 @@
         {{ category }}
       </li>
     </ul>
-    <ul class="filters" ref="priceFilter">
+    <ul
+      class="filters"
+      :class="{ popoverActive: popoverVisible == true }"
+      ref="priceFilter"
+    >
       <li
         class="filter-1"
         :class="{ active: isSortAlphabeticallyActive }"

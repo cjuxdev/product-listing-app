@@ -6,11 +6,11 @@
       <div class="row detail-area">
         <div class="col-lg-6">
           <div class="row">
-            <div class="col-lg-4">
-              <div class="side-img-1 col-lg-12">
+            <div class="col-lg-4 d-flex-sm">
+              <div class="side-img-1 col-lg-12 col-sm-6">
                 <img :src="product.image" :alt="product.name" />
               </div>
-              <div class="side-img-2 col-lg-12">
+              <div class="side-img-2 col-lg-12 col-sm-6">
                 <img :src="product.image" :alt="product.name" />
               </div>
             </div>

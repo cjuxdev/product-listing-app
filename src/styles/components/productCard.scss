@@ -1,10 +1,12 @@
 .card{
-    width: 334px;
+    min-width: 310px;
     height: 528px;
     border: 0px;
     .product-image{
         max-height: 90%;
         overflow: hidden;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
         img{
             max-width: 334px;
             border-top-right-radius: 10px;
