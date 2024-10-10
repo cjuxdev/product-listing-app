@@ -83,27 +83,43 @@
               class="cart-dropdown"
               ref="cartDropDown"
             >
-              <ul class="cart-items-list">
+              <ul
+                class="cart-items-list"
+                :class="{ emptyCartList: cartItems.length === 0 }"
+              >
+                <li v-if="cartItems.length === 0" class="empty-cart">
+                  <p>Your cart is empty.</p>
+                </li>
                 <li
                   v-for="item in cartItems"
                   :key="item.id"
                   class="cart-item text-start"
                 >
-                  <p>{{ item.name }}</p>
-                  <div class="d-flex gap-2">
-                    <span>
-                      <label class="cart-lable">Size:</label>
-                      {{ item.size }}</span
-                    >
-                    <span class="color-con">
-                      <label class="cart-lable">Color:</label>
-                      <div
-                        class="color-box"
-                        :style="{ backgroundColor: item.color }"
-                      ></div>
-                    </span>
+                  <div class="d-flex img-with-data">
+                    <img
+                      :src="item.image"
+                      alt="Product Image"
+                      class="thumbnail"
+                    />
+                    <div>
+                      <p class="p-name">{{ item.name }}</p>
+
+                      <div class="d-flex gap-2">
+                        <span>
+                          <label class="cart-lable">Size:</label>
+                          {{ item.size }}</span
+                        >
+                        <span class="color-con">
+                          <label class="cart-lable">Color:</label>
+                          <div
+                            class="color-box"
+                            :style="{ backgroundColor: item.color }"
+                          ></div>
+                        </span>
+                      </div>
+                      <p>Price: ${{ item.price.toFixed(2) }}</p>
+                    </div>
                   </div>
-                  <p>Price: ${{ item.price.toFixed(2) }}</p>
                 </li>
               </ul>
               <div class="cart-total">

@@ -158,6 +158,7 @@ export default {
       const productToAdd = {
         id: this.product.id,
         name: this.product.name,
+        image: this.product.image,
         price: this.product.price,
         color: this.selectedColor,
         size: this.selectedSize,
